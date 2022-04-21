@@ -70,3 +70,4 @@ while| with {linea=yyline; columna=yycolumn; lexeme=yytext();return Palabra_Rese
  . |. | ({D}+{L}+)| {S}{3,100} {linea=yyline; columna=yycolumn; lexeme=yytext(); return Error;} 
 
 
+//Ultima Edicion 21/04/2022
