@@ -1,0 +1,73 @@
+// JS sintaxis aceptda compiladores
+//Operadores
+[
+  {
+    '=': 'Asignacion',
+    '==': 'Comparacion',
+    '>': 'Comparacion',
+    '<': 'Comparacion',
+    '>=': 'Comparacion',
+    '<=': 'Comparacion',
+    '||': 'Logico OR',
+    '&&': 'Logico AND',
+    '{': 'Llave inicio',
+    '}': 'Llave fin',
+    '(': 'Parentesis inicio',
+    '{': 'Parentesis fin',
+    ';': 'Terminador ;',
+  },
+]; // Operadores de referecia para sintaxis
+
+// Variables
+// Sintaxis aceptada => numero, cadena, booleano[true, false]
+let variable = '';
+var numero = 0;
+var banderaT = true;
+var banderaF = false;
+var edad = 18;
+
+// Estructuras de control
+// validar operadores
+if (edad > 18) {
+  console.log('Es mayor de edad');
+}
+
+if (banderaT == true || banderaF == true) {
+  console.log('Se ejecutra si alguna bandera es verdadera');
+}
+
+if (banderaT == true && banderaF == true) {
+  console.log('Se ejecutra solo si ambas badneras son verdaderas');
+}
+
+if (edad >= 18) {
+  //CON EXPRECION COMPUESTA
+  console.log('la edad es mayor o igual a 18');
+} else {
+  console.log('es menor de edad');
+}
+
+switch (numero) {
+  case 1:
+    console.log('el numero es 1');
+    break;
+  case 2:
+    console.log('el numero es 2');
+    break;
+  default:
+    console.log('no se reconoce el numero ');
+    break;
+}
+
+// Estructuras de repeticion
+while (banderaT == true) {
+  console.log('La bandera esta en verdadero');
+}
+
+for (numero; numero < 10; numero++) {
+  // Se repetira 10 veces
+  console.log('Repeticion numero: ');
+  console.log(numero);
+}
+
+// AGREGAR ESTRUCTURAS ANIDADAS (SITACTICO)
