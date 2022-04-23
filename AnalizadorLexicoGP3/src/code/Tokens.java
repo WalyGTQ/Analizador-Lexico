@@ -1,4 +1,3 @@
-
 package code;
 
 public enum Tokens {
@@ -27,6 +26,12 @@ public enum Tokens {
     Comentario,
     Incremento,
     Decremento,
+    Boleano,
+    Operador_Residuo,
+    Potencia,
+    Vacio,
+    ClaveReservada,
+    NotacionCientifica,
     Error
-    
+
 }
