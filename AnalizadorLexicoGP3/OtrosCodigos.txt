@@ -1,0 +1,592 @@
+//area de Codigo de Usuario
+
+package code;
+import java_cup.runtime.Symbol;
+%%
+%class LexerCup
+%type java_cup.runtime.Symbol
+%cup
+%full
+%line
+%column
+%char
+
+L=[a-zA-Z_ñÑ]+
+D=[0-9]+
+S=[\- | \_ | \. | \:   | \; | \+  | \# | \$ | \%  | \/ | \( | \)  | ","| \[ | \] | \{ | \}]
+espacio=[ ,\t,\r,\n]+
+
+%{
+    private Symbol symbol(int type, Objet value){
+       return new Symbol(type, yyline, yycolumn, value)}
+
+    private Symbol symbol(int type){
+       return new Symbol(type, yyline,yycolumn)}
+
+
+
+%}
+%%
+{espacio} {/*Ignore*/}
+//"//".* {/*Ignore*/}
+
+(break)       {return new Symbol(sym.BREAK, yychar, yyline, yytext());}
+(case)        {return new Symbol(sym.CASE, yychar, yyline, yytext());}
+(catch)       {return new Symbol(sym.CATCH, yychar, yyline, yytext());}
+continue      {return new Symbol(sym.CONTINUE, yychar, yyline, yytext());}
+default       {return new Symbol(sym.DEFAULT, yychar, yyline, yytext());}
+delete        {return new Symbol(sym.DELETE, yychar, yyline, yytext());}
+do            {return new Symbol(sym.DO, yychar, yyline, yytext());}
+else          {return new Symbol(sym.ELSE, yychar, yyline, yytext());}
+finally       {return new Symbol(sym.FINALLY, yychar, yyline, yytext());}
+for           {return new Symbol(sym.FOR, yychar, yyline, yytext());}
+function      {return new Symbol(sym.FUNCION, yychar, yyline, yytext());}
+if            {return new Symbol(sym.IF, yychar, yyline, yytext());}
+in            {return new Symbol(sym.IN, yychar, yyline, yytext());}
+instanceof    {return new Symbol(sym.INSTANCE_OF, yychar, yyline, yytext());}
+new           {return new Symbol(sym.NEW, yychar, yyline, yytext());}
+return        {return new Symbol(sym.RETURN, yychar, yyline, yytext());}
+switch        {return new Symbol(sym.SWITCH, yychar, yyline, yytext());}
+this          {return new Symbol(sym.THIS, yychar, yyline, yytext());}
+throw         {return new Symbol(sym.THROW, yychar, yyline, yytext());}
+try           {return new Symbol(sym.TRY, yychar, yyline, yytext());}
+typeof        {return new Symbol(sym.TYPE_OF, yychar, yyline, yytext());}
+var           {return new Symbol(sym.VAR, yychar, yyline, yytext());}
+void          {return new Symbol(sym.VOID, yychar, yyline, yytext());}
+while         {return new Symbol(sym.WHILE, yychar, yyline, yytext());}
+with          {return new Symbol(sym.WITH, yychar, yyline, yytext());}
+class         {return new Symbol(sym.CLASS, yychar, yyline, yytext());}
+const         {return new Symbol(sym.CONST, yychar, yyline, yytext());}
+debugger      {return new Symbol(sym.DEBUGGUER, yychar, yyline, yytext());}
+export        {return new Symbol(sym.EXPORT, yychar, yyline, yytext());}
+extends       {return new Symbol(sym.EXTENDS, yychar, yyline, yytext());}
+import        {return new Symbol(sym.IMPORT, yychar, yyline, yytext());}
+super         {return new Symbol(sym.SUPER, yychar, yyline, yytext());}
+yield         {return new Symbol(sym.YIELD, yychar, yyline, yytext());}
+enum          {return new Symbol(sym.ENUM, yychar, yyline, yytext());}
+
+abstrac         {return new Symbol(sym.ABSTRACT, yychar, yyline, yytext());}
+boolean         {return new Symbol(sym.BOOLEAN, yychar, yyline, yytext());}
+byte            {return new Symbol(sym.BYTE, yychar, yyline, yytext());}
+char            {return new Symbol(sym.CHAR, yychar, yyline, yytext());}
+double          {return new Symbol(sym.DOUBLE, yychar, yyline, yytext());}
+final           {return new Symbol(sym.FINAL, yychar, yyline, yytext());}
+float           {return new Symbol(sym.FLOAT, yychar, yyline, yytext());}
+goto            {return new Symbol(sym.GOTO, yychar, yyline, yytext());}
+int             {return new Symbol(sym.INT, yychar, yyline, yytext());}
+long            {return new Symbol(sym.LONG, yychar, yyline, yytext());}
+native          {return new Symbol(sym.NATIVE, yychar, yyline, yytext());}
+short           {return new Symbol(sym.SHORT, yychar, yyline, yytext());}
+synchronized    {return new Symbol(sym.SYNCHRONIZED, yychar, yyline, yytext());}
+throws          {return new Symbol(sym.THROWS, yychar, yyline, yytext());}
+transient       {return new Symbol(sym.TRANSIENT, yychar, yyline, yytext());}
+volatile        {return new Symbol(sym.VOLATILE, yychar, yyline, yytext());}
+null            {return new Symbol(sym.NULL, yychar, yyline, yytext());}
+true            {return new Symbol(sym.VERDADERO, yychar, yyline, yytext());}
+false           {return new Symbol(sym.FALSO, yychar, yyline, yytext());}
+
+"="     {return new Symbol(sym.IGUAL, yychar, yyline, yytext());}
+"+"     {return new Symbol(sym.MAS, yychar, yyline, yytext());}
+"++"    {return new Symbol(sym.INCREMENTO, yychar, yyline, yytext());}
+"-"     {return new Symbol(sym.MENOS, yychar, yyline, yytext());}
+"--"    {return new Symbol(sym.DECREMENTO, yychar, yyline, yytext());}
+"*"     {return new Symbol(sym.MULTIPLICACION, yychar, yyline, yytext());}
+"/"     {return new Symbol(sym.DIVISION, yychar, yyline, yytext());}
+"%"     {return new Symbol(sym.MODULO, yychar, yyline, yytext());}
+"**"    {return new Symbol(sym.POTENCIA, yychar, yyline, yytext());} 
+"{"     {return new Symbol(sym.LLAVE_APERTURA, yychar, yyline, yytext());}
+"}"     {return new Symbol(sym.LLAVE_CIERRE, yychar, yyline, yytext());}
+"("     {return new Symbol(sym.PARENTECIS_APERTURA, yychar, yyline, yytext());}
+")"     {return new Symbol(sym.PARENTECIS_CIERRE, yychar, yyline, yytext());}
+"["     {return new Symbol(sym.CORCHETE_APERTURA, yychar, yyline, yytext());}
+"]"     {return new Symbol(sym.CORCHETE_CIERRE, yychar, yyline, yytext());}
+";"     {return new Symbol(sym.PUNTO_COMA, yychar, yyline, yytext());}
+"/,"     {return new Symbol(sym.COMA, yychar, yyline, yytext());}
+
+
+{L}({L}|{D})* {return new Symbol(sym.IDENTIFICADOR, yychar, yyline, yytext());}
+
+//Tipos de Numeros
+-{D}+|{D}                  {return new Symbol(sym.NINT, yychar, yyline, yytext());}
+-{D}+\.{D}+ |{D}\.{D}+     {return new Symbol(sym.NFLOAT, yychar, yyline, yytext());}
+^([-|+]*{D}+e[-|+]*{D}+)   {return new Symbol(sym.NCIENTIFIC, yychar, yyline, yytext());}
+
+
+//Otros LEXEMAS
+
+("!=" | ">" | "<" | ">=" | "<=" | "==" | "===" | "+=" | "-=" | "*=" | "=" | "%=" | "**=" | "<<=" | ">>=" | ">>>=" | "&=" | "^=" | "|=" | "&&=" | "||=" | "??=") {return new Symbol(sym.COMPARADOR, yychar, yyline, yytext());}
+"\&\&" | "\|\|" {return new Symbol(sym.OP_LOGICO, yychar, yyline, yytext());}
+{S} {return new Symbol(sym.SIMBOLO, yychar, yyline, yytext());}
+("/""/"({L}|{D}|{S}|> | < | =)+ | "\/""\*"(\n| \t | {L}|{D}|{S}|> | < | =)+"\*""\/")  {return new Symbol(sym.COMENTARIO, yychar, yyline, yytext());}
+
+("'"({L}|{D}|{S}|> | < | =)+"'") | ("\""({L}|{D}|{S}|> | < | =)+"\"") {return new Symbol(sym.CADENA, yychar, yyline, yytext());}
+
+ . |. | ({D}+{L}+) {return new Symbol(sym.ERROR, yychar, yyline, yytext());}
+
+
+
+/*
+//Palabras reservadas
+break | case| catch |continue| default| delete| do|
+else| finally| for|function| if|in| instanceof| new|
+return| switch| this| throw| try| typeof| var| void|
+while| with|class|const|debugger|export|extends|import|
+super | yield |enum {return new Symbol(sym.Reservada, yychar, yyline, yytext());}
+
+
+null {linea=yyline; columna=yycolumn; lexeme=yytext();return Vacio;}
+abstract|boolean|byte|char|double|final|float|goto|int|long|
+native|short|synchronized|throws|transient|volatile {linea=yyline; columna=yycolumn; lexeme=yytext();return ClaveReservada;}
+
+
+
+{espacio} {/*Ignore*/}
+//"//".* {/*Ignore*/}
+"=" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Operador_Asignacion;}
+
+"+" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Operador_Suma;}
+"++" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Incremento;}
+"-" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Operador_Resta;}
+"--" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Decremento;}
+"*" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Operador_Multiplicacion;}
+"/" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Operador_Division;}
+"%" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Operador_Residuo;}
+"**" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Potencia;}
+
+"{" {linea=yyline; columna=yycolumn; lexeme=yytext(); return LLave_Apertura;}
+"}" {linea=yyline; columna=yycolumn; lexeme=yytext(); return LLave_Cierre;}
+"(" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Parentesis_Apertura;}
+")" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Parentesis_Cierre;}
+"[" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Corchete_Apertura;}
+"]" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Corchete_Cierre;}
+
+";" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Terminador;}
+"," {linea=yyline; columna=yycolumn; lexeme=yytext(); return Coma;}
+
+true | false {linea=yyline; columna=yycolumn; lexeme=yytext(); return Boleano;}
+
+
+
+{L}({L}|{D})* {linea=yyline; columna=yycolumn; lexeme=yytext(); return Identificador;}
+
+// ("(-"{D}+")")|{D} {linea=yyline; columna=yycolumn; lexeme=yytext(); return Numero;}
+
+
+//Tipos de Numeros
+-{D}+|{D} {linea=yyline; columna=yycolumn; lexeme=yytext(); return Entero_Real;}
+-{D}+\.{D}+ |{D}\.{D}+ {linea=yyline; columna=yycolumn; lexeme=yytext(); return Decimal_Real;}
+^([-|+]*{D}+e[-|+]*{D}+)  {linea=yyline; columna=yycolumn; lexeme=yytext(); return NotacionCientifica;}
+
+
+//Otros LEXEMAS
+
+("!=" | ">" | "<" | ">=" | "<=" | "==" | "===" | "+=" | "-=" | "*=" | "=" | "%=" | "**=" | "<<=" | ">>=" | ">>>=" | "&=" | "^=" | "|=" | "&&=" | "||=" | "??=") {linea=yyline; columna=yycolumn; lexeme=yytext(); return Comparador;}
+"\&\&" | "\|\|" {lexeme=yytext(); return Operador_Logico;}
+
+{S} {linea=yyline; columna=yycolumn; lexeme=yytext(); return Simbolo;}
+
+("/""/"({L}|{D}|{S}|> | < | =)+ | "\/""\*"(\n| \t | {L}|{D}|{S}|> | < | =)+"\*""\/")  {linea=yyline; columna=yycolumn; lexeme=yytext(); return Comentario;}
+
+("'"({L}|{D}|{S}|> | < | =)+"'") | ("\""({L}|{D}|{S}|> | < | =)+"\"") {linea=yyline; columna=yycolumn; lexeme=yytext(); return Cadena;}
+
+ . |. | ({D}+{L}+) {linea=yyline; columna=yycolumn; lexeme=yytext(); return Error;} 
+
+*/
+------------------------------------------------------------------------------------------------------------------------------
+Final de LexerCup.flex
+
+
+package code;
+
+import java_cup.runtime.Symbol;
+
+parser code
+{:
+    private Symbol s
+    public void syntax_error(Symbol s){
+        this.s =s;
+    }
+    public Symbol getS(){
+    return this.s;
+    }
+:};
+
+terminal  terminador ,  comparador ,  op_logico ,  op_aritmetico ,  op_asignacion ,  identificador ,  numero ,  
+    cadena ,  var ,  function , if ,  else ,  while ,  return ,  llave_inicio ,  llave_fin ,  paren_inicio ,  paren_fin , coma, entero,flotante;
+non terminal  programa ,  asignacion  ,  asignacion1  ,  bloque  ,  condicion ,  comparacion ,  expresion ,  estructura , 
+     estructura_if ,  estructura_if1 ,  estructura_while ,  estructura_while1 ,  declaracion_var ,  declaracion_var1 , 
+     declaracion_var2 ,  declaracion_funcion ,  declaracion_funcion1 ,  llamada ,  llamada1 ,  sentencia_return ,  sentencia , 
+     termino , literal;
+
+start with programa;
+
+programa ::= programa sentencia |
+             programa programa  | 
+             sentencia
+;
+
+sentencia ::= declaracion_funcion|   
+              declaracion_var terminador|   
+              declaracion_var2 terminador|   
+              asignacion terminador|   
+              expresion terminador|   
+              sentencia_return terminador|
+              estructura
+;
+declaracion_var ::= var identificador|
+                    declaracion_var coma identificador|
+                    declaracion_var2 coma identificador
+;
+
+declaracion_var1 ::=    var asignacion1|
+                        declaracion_var coma asignacion1|
+                        declaracion_var2 coma asignacion1
+;
+declaracion_var2 ::=    declaracion_var1 expresion|
+                        declaracion_var2 op_aritmetico expresion
+;
+
+asignacion ::=  asignacion1 expresion | 
+                asignacion op_aritmetico expresion
+;
+asignacion1 ::= identificador op_asignacion
+;
+declaracion_funcion ::= function identificador paren_inicio paren_fin bloque|
+                        declaracion_funcion1 paren_fin bloque
+;
+declaracion_funcion1 ::= function identificador paren_inicio identificador|
+                           declaracion_funcion declaracion_funcion1 coma identificador
+;
+bloque ::= llave_inicio programa llave_fin|
+           llave_inicio llave_fin
+;
+expresion ::= paren_inicio paren_fin|
+              expresion op_aritmetico expresion|
+              termino
+;
+termino ::= identificador|
+            llamada|
+            condicion|
+            comparacion|
+            literal
+;
+condicion ::= expresion op_logico expresion
+;
+comparacion ::= expresion comparador expresion 
+;
+sentencia_return ::= return expresion|
+                     sentencia_return op_aritmetico expresion
+;
+llamada ::=  identificador paren_inicio paren_fin|
+             llamada1 paren_fin
+;
+llamada1 ::= identificador paren_inicio expresion|
+             llamada1 op_aritmetico expresion|
+             llamada1 coma expresion
+;
+estructura ::= estructura_if|
+               estructura_while
+;
+estructura_if ::=   estructura_if1 llave_fin|
+                    estructura_if1 llave_fin else bloque
+;
+estructura_if1 ::= if expresion llave_inicio programa|
+                   estructura_if1 programa
+;
+estructura_while ::= estructura_while1 llave_fin
+;
+estructura_while1 ::= while expresion llave_inicio programa|
+                      estructura_while1 programa
+;
+literal ::= entero|
+            flotante|
+            cadena|
+numero
+;
+------------------------------------------------------------final de Sintax.cup
+
+
+
+//area de Codigo de Usuario
+
+package code;
+import static code.Tokens.*;
+%%
+%class Lexer
+%type Tokens
+%line
+%column
+%unicode 
+
+L=[a-zA-Z_ñÑ]+
+D=[0-9]+
+S=[\- | \_ | \. | \:   | \; | \+  | \# | \$ | \%  | \/ | \( | \)  | ","| \[ | \] | \{ | \}]
+espacio=[ ,\t,\r,\n]+
+%{
+    public String lexeme;
+    public int linea;
+    public int columna;
+%}
+%%
+//Palabras reservadas
+break | case| catch |continue| default| delete| do|
+else| finally| for|function| if|in| instanceof| new|
+return| switch| this| throw| try| typeof| var| void|
+while| with|class|const|debugger|export|extends|import|
+super | yield |enum {linea=yyline; columna=yycolumn; lexeme=yytext();return Palabra_Reservada;}
+
+
+null {linea=yyline; columna=yycolumn; lexeme=yytext();return Vacio;}
+abstract|boolean|byte|char|double|final|float|goto|int|long|
+native|short|synchronized|throws|transient|volatile {linea=yyline; columna=yycolumn; lexeme=yytext();return ClaveReservada;}
+
+
+
+{espacio} {/*Ignore*/}
+//"//".* {/*Ignore*/}
+"=" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Operador_Asignacion;}
+
+"+" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Operador_Suma;}
+"++" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Incremento;}
+"-" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Operador_Resta;}
+"--" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Decremento;}
+"*" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Operador_Multiplicacion;}
+"/" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Operador_Division;}
+"%" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Operador_Residuo;}
+"**" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Potencia;}
+
+"{" {linea=yyline; columna=yycolumn; lexeme=yytext(); return LLave_Apertura;}
+"}" {linea=yyline; columna=yycolumn; lexeme=yytext(); return LLave_Cierre;}
+"(" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Parentesis_Apertura;}
+")" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Parentesis_Cierre;}
+"[" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Corchete_Apertura;}
+"]" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Corchete_Cierre;}
+
+";" {linea=yyline; columna=yycolumn; lexeme=yytext(); return Terminador;}
+"/," {linea=yyline; columna=yycolumn; lexeme=yytext(); return Coma;}
+
+true | false {linea=yyline; columna=yycolumn; lexeme=yytext(); return Boleano;}
+
+
+
+{L}({L}|{D})* {linea=yyline; columna=yycolumn; lexeme=yytext(); return Identificador;}
+
+// ("(-"{D}+")")|{D} {linea=yyline; columna=yycolumn; lexeme=yytext(); return Numero;}
+
+
+//Tipos de Numeros
+-{D}+|{D} {linea=yyline; columna=yycolumn; lexeme=yytext(); return Entero_Real;}
+-{D}+\.{D}+ |{D}\.{D}+ {linea=yyline; columna=yycolumn; lexeme=yytext(); return Decimal_Real;}
+^([-|+]*{D}+e[-|+]*{D}+)  {linea=yyline; columna=yycolumn; lexeme=yytext(); return NotacionCientifica;}
+
+
+//Otros LEXEMAS
+
+("!=" | ">" | "<" | ">=" | "<=" | "==" | "===" | "+=" | "-=" | "*=" | "=" | "%=" | "**=" | "<<=" | ">>=" | ">>>=" | "&=" | "^=" | "|=" | "&&=" | "||=" | "??=") {linea=yyline; columna=yycolumn; lexeme=yytext(); return Comparador;}
+"\&\&" | "\|\|" {lexeme=yytext(); return Operador_Logico;}
+
+{S} {linea=yyline; columna=yycolumn; lexeme=yytext(); return Simbolo;}
+
+("/""/"({L}|{D}|{S}|> | < | =)+ | "\/""\*"(\n| \t | {L}|{D}|{S}|> | < | =)+"\*""\/")  {linea=yyline; columna=yycolumn; lexeme=yytext(); return Comentario;}
+
+("'"({L}|{D}|{S}|> | < | =)+"'") | ("\""({L}|{D}|{S}|> | < | =)+"\"") {linea=yyline; columna=yycolumn; lexeme=yytext(); return Cadena;}
+
+ . |. | ({D}+{L}+) {linea=yyline; columna=yycolumn; lexeme=yytext(); return Error;} 
+
+------------------------------------------------------------------------------------------fin Lexer.flex
+
+
+--------------------------Sintax.cup  2
+package code;
+
+import java_cup.runtime.Symbol;
+
+parser code
+{:
+    private Symbol s
+    public void syntax_error(Symbol s){
+        this.s =s;
+    }
+    public Symbol getS(){
+    return this.s;
+    }
+:};
+
+terminal  Terminador ,  Comparador ,  Operador_logico ,  Operador_Suma ,Operador_Resta, Operador_Multiplicacion, Operador_Division,
+    Operador_Residuo, Operador_Asignacion ,  Identificador ,  Entero_Real ,  
+    Cadena ,  Var ,  Function , If ,  Else ,  While ,  Return ,  LLave_Apertura,  LLave_Cierre,  Parentesis_Apertura ,  
+    Parentesis_Cierre , Coma, Decimal_Real;
+
+non terminal  programa ,  asignacion  ,  asignacion1  ,  bloque  ,  condicion ,  comparacion ,  expresion ,  estructura , 
+     estructura_if ,  estructura_if1 ,  estructura_while ,  estructura_while1 ,  declaracion_var ,  declaracion_var1 , 
+     declaracion_var2 ,  declaracion_funcion ,  declaracion_funcion1 ,  llamada ,  llamada1 ,  sentencia_return ,  sentencia , 
+     termino , literal;
+
+start with programa;
+
+programa ::= programa sentencia |
+             programa programa  | 
+             sentencia
+;
+
+sentencia ::= declaracion_funcion|   
+              declaracion_var Terminador|   
+              declaracion_var2 Terminador|   
+              Operador_Asignacion Terminador|   
+              expresion Terminador|   
+              sentencia_return Terminador|
+              estructura
+;
+declaracion_var ::= Var Identificador|
+                    declaracion_var Coma Identificador|
+                    declaracion_var2 Coma Identificador
+;
+
+declaracion_var1 ::=    Var asignacion1|
+                        declaracion_var Coma asignacion1|
+                        declaracion_var2 Coma asignacion1
+;
+declaracion_var2 ::=    declaracion_var1 expresion|
+                        declaracion_var2 Operador_Suma expresion|
+                        declaracion_var2 Operador_Resta expresion|
+                        declaracion_var2 Operador_Multiplicacion expresion|
+                        declaracion_var2 Operador_Division expresion|
+                        declaracion_var2 Operador_Residuo expresion
+;
+
+asignacion ::=  asignacion1 expresion | 
+                asignacion Operador_Suma expresion|
+                asignacion Operador_Resta expresion|
+                asignacion Operador_Multiplicacion expresion|
+                asignacion Operador_Division expresion|
+                asignacion Operador_Residuo expresion
+;
+asignacion1 ::= Identificador Operador_Asignacion
+;
+declaracion_funcion ::= Function Identificador Parentesis_Apertura Parentesis_Cierre bloque|
+                        declaracion_funcion1 Parentesis_Cierre bloque
+;
+declaracion_funcion1 ::= Function Identificador Parentesis_Apertura Identificador|
+                           declaracion_funcion declaracion_funcion1 Coma Identificador
+;
+bloque ::= LLave_Apertura programa LLave_Cierre|
+           LLave_Apertura LLave_Cierre
+;
+expresion ::= Parentesis_Apertura Parentesis_Cierre|
+              expresion Operador_Suma expresion|
+              expresion Operador_Resta expresion|
+              expresion Operador_Multiplicacion expresion|
+              expresion Operador_Division expresion|
+              expresion Operador_Residuo expresion|
+              termino
+;
+termino ::= Identificador|
+            llamada|
+            condicion|
+            comparacion|
+            literal
+;
+condicion ::= expresion Operador_logico expresion
+;
+comparacion ::= expresion Comparador expresion 
+;
+sentencia_return ::= Return expresion|
+                     sentencia_return Operador_Suma expresion|
+                     sentencia_return Operador_Resta expresion|
+                     sentencia_return Operador_Division expresion|
+                     sentencia_return Operador_Multiplicacion expresion|
+                     sentencia_return Operador_Residuo expresion|
+;
+llamada ::=  Identificador Parentesis_Apertura Parentesis_Cierre|
+             llamada1 Parentesis_Cierre
+;
+llamada1 ::= Identificador Parentesis_Apertura expresion|
+             llamada1 Operador_Suma expresion|
+             llamada1 Operador_Resta expresion|
+             llamada1 Operador_Multiplicacion expresion|
+             llamada1 Operador_Division expresion|
+             llamada1 Operador_Residuo expresion|
+             llamada1 Coma expresion
+;
+estructura ::= estructura_if|
+               estructura_while
+;
+estructura_if ::=   estructura_if1 LLave_Cierre|
+                    estructura_if1 LLave_Cierre Else bloque
+;
+estructura_if1 ::= If expresion LLave_Apertura programa|
+                   estructura_if1 programa
+;
+estructura_while ::= estructura_while1 LLave_Cierre
+;
+estructura_while1 ::= While expresion LLave_Apertura programa|
+                      estructura_while1 programa
+;
+literal ::= Entero_Real|
+            Decimal_Real|
+            Cadena
+;
+
+|
+              DECLARACION_VAR2 Terminador;
+
+DECLARACION_VAR1 ::= Var ASIGNACION1|
+                     DECLARACION_VAR Coma ASIGNACION1|
+                     DECLARACION_VAR2 Coma ASIGNACION1;
+
+DECLARACION_VAR2 ::= DECLARACION_VAR1 EXPRESION|
+                     DECLARACION_VAR2 Operador_Suma EXPRESION|
+                     DECLARACION_VAR2 Operador_Resta EXPRESION|
+                     DECLARACION_VAR2 Operador_Multiplicacion EXPRESION|
+                     DECLARACION_VAR2 Operador_Division EXPRESION;
+
+
+
+
+ASIGNACION ::= ASIGNACION1 EXPRESION|
+               ASIGNACION Operador_Suma EXPRESION|
+               ASIGNACION Operador_Resta EXPRESION|
+               ASIGNACION Operador_Division EXPRESION|
+               ASIGNACION Operador_Multiplicacion EXPRESION;
+
+ASIGNACION1 ::= Identificador Operador_Asignacion;
+
+ESTRUCTURA_IF ::= ESTRUCTURA_IF1 LLave_Cierre|
+                  ESTRUCTURA_IF1 LLave_Cierre Else BLOQUE|
+                  If Parentesis_Apertura Identificador LITERAL Parentesis_Cierre  BLOQUE;
+
+ESTRUCTURA_IF1 ::= If EXPRESION LLave_Apertura INICIO|
+                   ESTRUCTURA_IF1 INICIO;
+
+EXPRESION ::= Parentesis_Apertura Parentesis_Cierre|
+              EXPRESION Operador_Suma EXPRESION|
+              EXPRESION Operador_Resta EXPRESION|
+              EXPRESION Operador_Division EXPRESION|
+              EXPRESION Operador_Multiplicacion EXPRESION|
+              EXPRESION Operador_Residuo EXPRESION|
+              TERMINO;
+
+
+TERMINO ::= Identificador|
+            LLAMADA|
+            CONDICION|
+            COMPARACION|
+            LITERAL;
+
+LLAMADA ::= Identificador Parentesis_Apertura Parentesis_Cierre|
+            LLAMADA1 Parentesis_Cierre;
+
+LLAMADA1 ::= Identificador Parentesis_Apertura EXPRESION|
+             LLAMADA1 Operador_Suma EXPRESION|
+             LLAMADA1 Operador_Resta EXPRESION|
+             LLAMADA1 Operador_Multiplicacion EXPRESION|
+             LLAMADA1 Operador_Division EXPRESION|
+             LLAMADA1 Coma EXPRESION;
+
+CONDICION ::= EXPRESION Operador_Logico EXPRESION;
+
+COMPARACION ::= EXPRESION Comparador EXPRESION;
+
+LITERAL ::= Entero_Real|
+            Decimal_Real|
+            Cadena;
