@@ -1,7 +1,14 @@
 package code;
 
 public enum Tokens {
+    Var,
+    Return,
+    If,
+    Else,
+    While,
+    Function,
     Palabra_Reservada,
+    Letra,
     Operador_Suma,
     Operador_Resta,
     Operador_Multiplicacion,

@@ -1,0 +1,73 @@
+package code;
+
+import java_cup.runtime.Symbol;
+
+parser code
+{:
+    private Symbol s;
+    public void syntax_error(Symbol s){
+        this.s =s;
+    }
+    public Symbol getS(){
+    return this.s;
+    };
+:};
+
+terminal Terminador,  Comparador,  Operador_Logico,  Operador_Suma ,Operador_Resta, Operador_Multiplicacion, 
+    Operador_Division, Operador_Residuo, Operador_Asignacion ,  Identificador ,  Entero_Real,  
+    Cadena ,  Var ,  Function ,  While ,  Return ,  LLave_Apertura,  LLave_Cierre,  Parentesis_Apertura,  
+    Parentesis_Cierre, Coma, Decimal_Real,Letra, Vacio, Simbolo, Decremento, Operador_Potencia, Boleano, Corchete_Apertura,
+    Error, NotacionCientifica,  Comentario, Corchete_Cierre, Palabra_Reservada, ClaveReservada;
+terminal Boolean If ;
+terminal Boolean Else;
+
+non terminal   INICIO, SENTENCIA, DECLARACION_FUNCION, DECLARACION_VAR, DECLARACION_VAR1, DECLARACION_VAR2, 
+ASIGNACION, ASIGNACION1, BLOQUE, ESTRUCTURA_IF, ESTRUCTURA_IF1, EXPRESION, TERMINO, LLAMADA, CONDICION, COMPARACION, 
+LITERAL, LLAMADA1, ESTRUCTURA, COMPARACION1, COMPARACIONL, ELSE_IF, ELSE, BLOQUE1;
+
+
+
+start with INICIO;
+
+INICIO::= INICIO SENTENCIA|
+          SENTENCIA;
+
+SENTENCIA ::= DECLARACION_FUNCION|
+              DECLARACION_VAR Terminador|
+              ESTRUCTURA_IF ;
+              
+              
+
+DECLARACION_FUNCION::= Function Identificador Parentesis_Apertura Parentesis_Cierre BLOQUE;
+ 
+BLOQUE ::= LLave_Apertura INICIO LLave_Cierre Terminador|
+           LLave_Apertura  LLave_Cierre Terminador;
+
+BLOQUE1 ::= LLave_Apertura INICIO LLave_Cierre |
+            LLave_Apertura  LLave_Cierre;
+
+DECLARACION_VAR ::= Var Identificador Operador_Asignacion Entero_Real |
+                    Var Identificador Operador_Asignacion Decimal_Real |
+                    Var Identificador:a Operador_Asignacion Cadena:b{:String a1=String.valueOf(a); String b1=String.valueOf(b);:};
+
+
+ESTRUCTURA_IF ::= If Parentesis_Apertura COMPARACION1 Parentesis_Cierre BLOQUE1|
+                  If Parentesis_Apertura COMPARACIONL Parentesis_Cierre BLOQUE1|
+                  If Parentesis_Apertura COMPARACION1 Parentesis_Cierre BLOQUE1 ELSE|
+                  If Parentesis_Apertura COMPARACIONL Parentesis_Cierre BLOQUE1 ELSE; 
+
+//ELSE_IF::= Else ESTRUCTURA_IF;
+
+ELSE ::= Else BLOQUE1|
+         Else ESTRUCTURA_IF;
+
+LITERAL ::= Entero_Real|
+            Decimal_Real|
+            Cadena;
+
+COMPARACION1::=Identificador Comparador Identificador|
+              LITERAL Comparador Identificador|
+              Identificador Comparador LITERAL|
+              LITERAL Comparador LITERAL;
+
+COMPARACIONL::=COMPARACION1 Operador_Logico COMPARACION1;

@@ -1,1 +1,23 @@
-,dsad
+// Variables
+// Sintaxis aceptada => numero, cadena, booleano[true, false]
+
+var edad = 18
+// Programa que simula un vhatbot que responde segun tu edad
+// validar operadores
+if (edad >= 18) {
+  // Eres mayor de edad en la mayoria de paises
+  if (edad >= 18 && edad <= 21) {
+    //   Eres mayor de edad en la mayoria de paises, pero en USA aun eres menor de edad
+  }
+  if (edad > 21 && edad < 30) {
+    //   Al parecer eres un milenial o.0
+  } else if (edad > 30 && edad < 50) {
+    //   Ya te vez un poco desgastado, Recuerda ir al doctor jajaja
+  } else if (edad > 50 && edad < 100) {
+    //   Espero que te retires pronto
+  } else {
+    //   Wow  deberias tener un record guiness
+  }
+} else {
+  // Eres menor de edad :c
+}
